@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 
 RUN apt-get update -y \
-    && apt-get install -y vim zip curl apache2 php libapache2-mod-php php-mcrypt php-mysql php-cli
+    && apt-get install -y vim zip curl apache2 php libapache2-mod-php php-mcrypt php-mysql php-cli php-xml php-simplexml
 
  # Configure apache
 RUN a2enmod rewrite
