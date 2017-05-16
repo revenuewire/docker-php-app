@@ -15,6 +15,6 @@ ENV APACHE_LOG_DIR /var/log/apache2
 RUN rm -rf /var/www/html/* && echo '<?php phpinfo(); ?>' > /var/www/html/index.php
 
 EXPOSE 80
-COPY httpd.sh /usr/bin/httpd.sh
+COPY php7-xenial/httpd.sh /usr/bin/httpd.sh
 RUN chmod 777 /usr/bin/httpd.sh
 CMD ["/usr/bin/httpd.sh"]
