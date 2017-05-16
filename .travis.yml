@@ -6,7 +6,7 @@ services:
 before_install:
   - if [ "$TRAVIS_BRANCH" == "php7-xenial" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      docker build --pull -t revenuewire/docker-php:php7-xenial .;
+      docker build -f php7-xenial/Dockerfile --pull -t revenuewire/docker-php:php7-xenial .;
       docker push revenuewire/docker-php:php7-xenial;
     fi
 
