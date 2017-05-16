@@ -1,0 +1,14 @@
+sudo: required
+
+services:
+  - docker
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "php7-xenial" ]; then
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      docker build --pull -t revenuewire/php-app:php7-xenial .
+      docker push revenuewire/php-app:php7-xenial
+    fi
+
+script:
+  - echo `date`
