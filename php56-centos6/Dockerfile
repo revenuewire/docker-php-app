@@ -8,7 +8,7 @@ RUN rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 RUN yum -y update && yum -y install epel-release
 
 RUN yum -y localinstall /tmp/ius-release-1.0-14.ius.centos6.noarch.rpm
-RUN sed -i "s/enabled=0/enabled=1/" /etc/yum.repos.d/ius-archive.repo
+#RUN sed -i "s/enabled=0/enabled=1/" /etc/yum.repos.d/ius-archive.repo
 
 RUN yum -y update && yum -y install httpd  bash-completion pwgen supervisor sendmail mysql56u libmemcached10 \
                                     php56w php56w-common php56w-cli php56w-bcmath php56w-dba php56w-xml php56w-process \
