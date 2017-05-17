@@ -1,0 +1,14 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - if [ "$TRAVIS_BRANCH" == "php56-centos6" ]; then
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker build -f php56-centos6/Dockerfile --pull -t revenuewire/docker-php:php56-centos6 .;
+      docker push revenuewire/docker-php:php56-centos6;
+    fi
+
+script:
+  - echo `date`
