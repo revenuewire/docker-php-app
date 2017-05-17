@@ -2,8 +2,8 @@ FROM centos:centos6
 MAINTAINER The CentOS Project <cloud-ops@centos.org>
 
 # update the repo
-COPY assets/ius-release-1.0-14.ius.centos6.noarch.rpm /tmp/ius-release-1.0-14.ius.centos6.noarch.rpm
-COPY assets/xcache-3.2.0-2.tar /tmp/xcache-3.2.0-2.tar
+COPY php56-centos6/assets/ius-release-1.0-14.ius.centos6.noarch.rpm /tmp/ius-release-1.0-14.ius.centos6.noarch.rpm
+COPY php56-centos6/assets/xcache-3.2.0-2.tar /tmp/xcache-3.2.0-2.tar
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 RUN yum -y update && yum -y install epel-release
 
@@ -17,8 +17,7 @@ RUN yum -y update && yum -y install httpd  bash-completion pwgen supervisor send
                                     php-pear-Mail php-pear-Mail-Mime php-pear-DB php-pear-HTML-Common \
                                     php-pear-Auth-SASL php-pear-phing php-pear-Pager perl-IPC-Signal \
                                     perl-Proc-WaitStat  perl-mime-construct liblockfile lockfile-progs \
-                                    logcheck mod_ssl openssl
-RUN yum -y update && yum -y install tar zip
+                                    logcheck mod_ssl openssl install tar zip
 
 # install xcache 3.2.0 which works with php5.6, unfortunately, have to compile yourself
 RUN yum -y groupinstall 'Development Tools' 'Development Libraries' && yum -y install php56w-devel
@@ -32,15 +31,15 @@ RUN tar xf /tmp/xcache-3.2.0-2.tar && \
 RUN yum clean all
 
 # add website apache configs.
-COPY configs/apache-configs/httpd.conf /etc/httpd/conf/httpd.conf
+COPY php56-centos6/configs/apache-configs/httpd.conf /etc/httpd/conf/httpd.conf
 
 # Add custom ini files
-COPY ini/xcache.ini /etc/php.d/xcache.ini
-COPY ini/php.ini /etc/php.ini
+COPY php56-centos6/ini/xcache.ini /etc/php.d/xcache.ini
+COPY php56-centos6/ini/php.ini /etc/php.ini
 
 RUN rm /etc/httpd/conf.d/ssl.conf
 
 # Simple startup script to avoid some issues observed with container restart
-ADD run-httpd.sh /usr/bin/run-httpd.sh
+ADD php56-centos6/run-httpd.sh /usr/bin/run-httpd.sh
 
 CMD ["/usr/bin/run-httpd.sh"]
