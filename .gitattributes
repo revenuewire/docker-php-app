@@ -1,0 +1,6 @@
+php56-centos6-jackfruit/files/geoip/GeoIPRegion.dat filter=lfs diff=lfs merge=lfs -text
+php56-centos6-jackfruit/files/geoip/GeoIPv6.dat filter=lfs diff=lfs merge=lfs -text
+php56-centos6-jackfruit/files/geoip/GeoIP.dat filter=lfs diff=lfs merge=lfs -text
+php56-centos6-jackfruit/files/geoip/GeoIPCity.dat filter=lfs diff=lfs merge=lfs -text
+php56-centos6-jackfruit/files/geoip/GeoIP2-City.mmdb filter=lfs diff=lfs merge=lfs -text
+php56-centos6-jackfruit/files/geoip/GeoIP2-Country.mmdb filter=lfs diff=lfs merge=lfs -text
