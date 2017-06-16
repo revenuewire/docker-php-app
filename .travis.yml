@@ -14,6 +14,11 @@ before_install:
       docker build -f php56-centos6/Dockerfile -t revenuewire/docker-php:php56-centos6 .;
       docker push revenuewire/docker-php:php56-centos6;
     fi
+  - if [ "$TRAVIS_BRANCH" == "php56-centos6-jackfruit" ]; then
+        docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+        docker build -f php56-centos6-jackfruit/Dockerfile -t revenuewire/docker-php:php56-centos6-jackfruit .;
+        docker push revenuewire/docker-php:php56-centos6-jackfruit;
+    fi
 
 script:
   - echo `date`
