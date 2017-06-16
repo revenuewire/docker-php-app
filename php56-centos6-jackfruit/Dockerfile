@@ -18,24 +18,24 @@ RUN yum -y update && yum -y install httpd  bash-completion pwgen supervisor send
                                     php-pear-Auth-SASL php-pear-phing php-pear-Pager perl-IPC-Signal \
                                     perl-Proc-WaitStat  perl-mime-construct liblockfile lockfile-progs \
                                     logcheck mod_ssl openssl install tar zip php56u-xcache php56w-intl
-COPY files/wkhtmltox-0.12.2.1_linux-centos6-amd64.rpm /tmp/wkhtmltox-0.12.2.1_linux-centos6-amd64.rpm
+COPY php56-centos6-jackfruit/files/wkhtmltox-0.12.2.1_linux-centos6-amd64.rpm /tmp/wkhtmltox-0.12.2.1_linux-centos6-amd64.rpm
 RUN yum -y localinstall /tmp/wkhtmltox-0.12.2.1_linux-centos6-amd64.rpm
 RUN yum clean all
 
 RUN touch /tmp/propelpdo.log && chmod 777 /tmp/propelpdo.log
 RUN touch /var/log/cron.log && chmod 777 /var/log/cron.log
-COPY files/geoip/* /usr/share/GeoIP/
+COPY php56-centos6-jackfruit/files/geoip/* /usr/share/GeoIP/
 
 # add website apache configs.
-COPY configs/apache-configs/httpd.conf /etc/httpd/conf/httpd.conf
+COPY php56-centos6-jackfruit/configs/apache-configs/httpd.conf /etc/httpd/conf/httpd.conf
 
 # Add custom ini files
-COPY ini/xcache.ini /etc/php.d/xcache.ini
-COPY ini/php.ini /etc/php.ini
+COPY php56-centos6-jackfruit/ini/xcache.ini /etc/php.d/xcache.ini
+COPY php56-centos6-jackfruit/ini/php.ini /etc/php.ini
 
 RUN rm /etc/httpd/conf.d/ssl.conf && mkdir -p /var/www/jackfruit
 
 # Simple startup script to avoid some issues observed with container restart
-ADD run-httpd.sh /usr/bin/run-httpd.sh
+ADD php56-centos6-jackfruit/run-httpd.sh /usr/bin/run-httpd.sh
 
 CMD ["/usr/bin/run-httpd.sh"]
