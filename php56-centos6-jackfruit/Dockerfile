@@ -10,7 +10,7 @@ MAINTAINER The CentOS Project <cloud-ops@centos.org>
 # update the repo
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 RUN yum -y update && yum -y install epel-release
-RUN yum -y update && yum -y install httpd  bash-completion pwgen supervisor sendmail mysql56u libmemcached10 \
+RUN yum -y update && yum -y install httpd mysql bash-completion pwgen supervisor sendmail mysql56u libmemcached10 \
                                     php56w php56w-common php56w-cli php56w-bcmath php56w-dba php56w-xml php56w-process \
                                     php56w-xmlrpc php56w-gd php56w-mysqlnd php56w-mcrypt php56w-mbstring php56w-soap \
                                     php56w-pecl-memcached php56w-pecl-geoip php56w-pecl-xdebug php-pear-XML-Parser \
